@@ -1,0 +1,30 @@
+$dialog-sizes: 0.2rem 0.5rem 0.75rem 1rem 1.2rem 1.5rem 4rem 4.5rem 5rem 10rem !default;
+
+@function closest ($val, $list) {
+    $current: 0;
+    @each $listVal in $list {
+        @if (abs($val - $listVal) < abs($val - $current)) {
+            $current: $listVal;
+        }
+    }
+    @return $current;
+}
+
+@function size($size, $sizes: $dialog-sizes) {
+  $closest: closest($size, $sizes);
+
+  @if unitless($size) {
+    @if not (($size <= 1) or ($size >= 0)) {
+        @error 'if $size is unitless it should be a value between 0 and 1'
+    } @else {
+        $closest: nth($sizes, max(1, round(length($sizes) * $size)) );
+    }
+  }
+
+  @if ( $closest != $size) {
+    @warn '#{$size} is not contained in $sizes the closest value: #{$closest} will be used';
+  }
+
+  @return $closest;
+}
+
