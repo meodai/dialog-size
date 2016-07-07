@@ -14,25 +14,22 @@ $dialog-sizes-names: xx-small x-small small medium large x-large xx-large !defau
 @function size($size, $sizes: $dialog-sizes, $names: $dialog-sizes-names) {
   $closest: null;
 
-  @if index($sizes, $size) {
-    $closest: $size;
-  } @else {
-    @if index($names, $size) {
-      $size: index($names, $size) / length($names);
-    }
-    @if unitless($size) {
-      @if not (($size <= 1) or ($size >= 0)) {
-          @error 'if $size is unitless it should be a value between 0 and 1'
-      } @else {
-          $closest: nth($sizes, max(1, round(length($sizes) * $size)) );
-      }
-    }@else{
-      $closest: closest($size, $sizes);
-    }
+  @if index($names, $size) {
+    $size: index($names, $size) / length($names);
+  }
 
-    @if ( $closest != $size) {
-      @warn '#{$size} is not contained in $sizes the closest value: #{$closest} will be used';
+  @if unitless($size) {
+    @if not (($size <= 1) or ($size >= 0)) {
+        @error 'if $size is unitless it should be a value between 0 and 1'
+    } @else {
+        $closest: nth($sizes, max(1, round(length($sizes) * $size)) );
     }
+  }@else{
+    $closest: closest($size, $sizes);
+  }
+
+  @if ( $closest != $size) {
+    @warn '#{$size} is not contained in $sizes the closest value: #{$closest} will be used';
   }
 
   @return $closest;
