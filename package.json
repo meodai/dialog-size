@@ -1,0 +1,28 @@
+{
+  "name": "dialog-size",
+  "version": "0.1.0",
+  "description": "Painless CSS metrics",
+  "main": "size.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meodai/dialog-size.git"
+  },
+  "keywords": [
+    "sass",
+    "sizes",
+    "css",
+    "design"
+  ],
+  "author": "meodai <meodai@gmail.com> (https://github.com/meodai/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meodai/dialog-size/issues"
+  },
+  "homepage": "https://github.com/meodai/dialog-size#readme",
+  "devDependencies": {
+    "node-sass": "^3.8.0"
+  }
+}

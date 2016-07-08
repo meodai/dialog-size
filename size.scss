@@ -1,5 +1,8 @@
-$dialog-sizes: 0.2rem 0.5rem 0.75rem 1rem 1.2rem 1.5rem 4rem 4.5rem 5rem 10rem !default;
-$dialog-sizes-names: xx-small x-small small medium large x-large xx-large !default;
+$dialog-sizes:                0.2rem 0.5rem 0.75rem 1rem 1.2rem 1.5rem 4rem 4.5rem 5rem 10rem !default;
+$dialog-sizes-base:           1rem !default;
+$dialog-sizes-base-name:      medium !default;
+$dialog-sizes-names:          xx-small x-small small medium large x-large xx-large !default;
+
 
 @function closest ($val, $list) {
     $current: 0;
@@ -13,16 +16,25 @@ $dialog-sizes-names: xx-small x-small small medium large x-large xx-large !defau
 
 @function size($size, $sizes: $dialog-sizes, $names: $dialog-sizes-names) {
   $closest: null;
+  $baseIndex: 0;
+
+  @if index($dialog-sizes, $dialog-sizes-base) {
+    $baseIndex: index($dialog-sizes, $dialog-sizes-base);
+  } @else {
+    @error '#{$dialog-sizes-base} from $dialog-sizes-base is not contained in $dialog-sizes'
+  }
 
   @if index($names, $size) {
     $size: index($names, $size) / length($names);
   }
 
   @if unitless($size) {
-    @if not (($size <= 1) or ($size >= 0)) {
-        @error 'if $size is unitless it should be a value between 0 and 1'
+    @if not (($size <= 1) or ($size >= -1)) {
+        @error 'if $size is unitless it must be a value between -1 and 1'
     } @else {
-        $closest: nth($sizes, max(1, round(length($sizes) * $size)) );
+      // transform range from [-1,1] to [0,1]
+      $size: ($size + 1) / 2;
+      $closest: nth($sizes, max(1, round(length($sizes) * $size)) );
     }
   }@else{
     $closest: closest($size, $sizes);
@@ -33,4 +45,10 @@ $dialog-sizes-names: xx-small x-small small medium large x-large xx-large !defau
   }
 
   @return $closest;
+}
+
+body {
+  padding: size(1);
+  margin: size(-1);
+  border: size(-.2) solid red;
 }
