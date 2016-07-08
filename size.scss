@@ -18,6 +18,10 @@ $dialog-sizes-names:          xx-small x-small small medium large x-large xx-lar
   $closest: null;
   $baseIndex: 0;
 
+  @if length($dialog-sizes) < 3 {
+    @error '$dialog-sizes needs to be a set of min 3 values'
+  }
+
   @if index($dialog-sizes, $dialog-sizes-base) {
     $baseIndex: index($dialog-sizes, $dialog-sizes-base);
   } @else {
@@ -38,19 +42,19 @@ $dialog-sizes-names:          xx-small x-small small medium large x-large xx-lar
     }
   }@else{
     $closest: closest($size, $sizes);
-  }
-
-  @if ( $closest != $size) {
-    @warn '#{$size} is not contained in $sizes the closest value: #{$closest} will be used';
+    @if ( $closest != $size ) {
+      @warn '#{$size} is not contained in $sizes the closest value: #{$closest} will be used';
+    }
   }
 
   @return $closest;
 }
 
-/**
+/*
 body {
   padding: size(1);
   margin: size(-1);
   border: size(-.2) solid red;
 }
-**/
+*/
+
