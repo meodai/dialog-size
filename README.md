@@ -11,6 +11,7 @@ npm install dialog-sizes
 ```
 
 ## Usage
+
 Define a palette of possible sizes by setting the `$dialog-sizes`
 ```scss
 $dialog-sizes: 0.2rem 0.5rem 0.75rem 1rem 1.2rem 1.5rem 4rem 4.5rem 5rem 10rem;
@@ -20,11 +21,12 @@ Set the default size in `$dialog-sizes-base`.
 ```scss
 $dialog-sizes-base: 1rem
 ```
+
 Once done you, are able to use the `size()` function in different ways:
-`size(1)` will return the largest size in your system (10rem)
-`size(-1)` will return the smalest size in your system (0.2rem)
-`size(0)` will return the base size (1rem)
-`size(.2)` will snap to the closest value in your system
+- `size(1)` will return the largest size in your system (10rem)
+- `size(-1)` will return the smalest size in your system (0.2rem)
+- `size(0)` will return the base size (1rem)
+- `size(.2)` will snap to the closest value in your system
 
 There is also the possibility to use a size in the same unit then your system. (In this case REM)
-`size(17rem)` will retrun 16rem since its the closest in your system
+- `size(17rem)` will retrun 16rem since its the closest in your system
