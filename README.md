@@ -4,6 +4,8 @@ Aims to normalize sizes in a CSS project. When using the `size()` function, the 
 
 It also solves the problem of naming sizes, since every size can be accessed with a number between -1 and 1
 
+Play around with it in the [demo](http://www.sassmeister.com/gist/e822621dddf3488d43dad9791a63ddc3)
+
 ## Installation
 
 ```
