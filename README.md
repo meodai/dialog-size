@@ -1,7 +1,10 @@
-# dialog-size
+<p align="center">
+    <a href=""><img width="100%" src="media/logo.png" alt="dialog(size)"></a>
+</p>
+
+# dialog(size)
 
 A relative size-system that aims to ease the dialog between Design and Frontend by providing a system that is easily extendable and does not relay on names.
-
 
 Play around with it in the [**demo**](http://sassmeister.com/gist/7e563730c9a2c15581e5c40a10098369)
 
