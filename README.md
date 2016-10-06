@@ -21,32 +21,32 @@ npm install dialog-sizes
 2. Define a palette of possible sizes by setting the `$dialog-sizes`
 ```scss
 $dialog-sizes:
-        (0.2rem tiny) // size(-1)
-        0.5rem
-        (0.75rem small)
-        0.8rem
-        (1rem medium isBase) // size(0)
-        1.2rem
-        (1.5rem large)
-        3.5rem
-        5rem
-        (10rem huge)
-        20rem;  // size(1)
+    (0.2rem tiny) // size(-1)
+    0.5rem
+    (0.75rem small)
+    0.8rem
+    (1rem medium isBase) // size(0)
+    1.2rem
+    (1.5rem large)
+    3.5rem
+    5rem
+    (10rem huge)
+    20rem;  // size(1)
 ```
 
 3. Call `size()` function
 ```scss
-    body {
-        padding: size(-1); // => 0.2rem
-        font-size: size(0); // => 1rem
-    }
-    h1 {
-        font-size: size(1); // => 20rem
-        padding: size(large) 0; // => 1.5rem
-    }
-    p {
-        padding: size(3rem); // => 3.5rem
-    }
+body {
+    padding: size(-1); // => 0.2rem
+    font-size: size(0); // => 1rem
+}
+h1 {
+    font-size: size(1); // => 20rem
+    padding: size(large) 0; // => 1.5rem
+}
+p {
+    padding: size(3rem); // => 3.5rem
+}
 ```
 
 ## Usage
