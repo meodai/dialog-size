@@ -1,5 +1,5 @@
 <p align="center">
-    <a href=""><img width="100%" src="media/logo.png" alt="dialog(size)"></a>
+    <img width="80%" src="media/logo.png" alt="dialog(size)">
 </p>
 
 # dialog(size)
