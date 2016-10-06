@@ -1,8 +1,4 @@
-<p align="center">
-    <img width="80%" src="media/logo.png" alt="dialog(size)">
-</p>
-
-# dialog(size)
+<h1 align="center"><img width="80%" src="media/logo.png" alt="dialog(size)"></h1>
 
 A relative size-system that aims to ease the dialog between Design and Frontend by providing a system that is easily extendable and does not relay on names.
 
