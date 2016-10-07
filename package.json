@@ -1,8 +1,8 @@
 {
   "name": "dialog-size",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Painless CSS metrics",
-  "main": "size.scss",
+  "main": "dialog-size.scss",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
