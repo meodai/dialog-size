@@ -1,10 +1,13 @@
 {
   "name": "dialog-size",
   "version": "1.1.1",
-  "description": "Painless CSS metrics",
+  "description": "Painless CSS sizes",
   "main": "dialog-size.scss",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test:sass && opener ./test/sass/index.html",
+    "build": "gulp build",
+    "dev": "gulp",
+    "deploy": "gulp build && gh-pages -d demo"
   },
   "repository": {
     "type": "git",
@@ -12,9 +15,10 @@
   },
   "keywords": [
     "sass",
-    "sizes",
+    "size",
     "css",
-    "design"
+    "design",
+    "scss"
   ],
   "author": "meodai <meodai@gmail.com> (https://github.com/meodai/)",
   "license": "MIT",
@@ -23,6 +27,13 @@
   },
   "homepage": "https://github.com/meodai/dialog-size#readme",
   "devDependencies": {
-    "node-sass": "^3.8.0"
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-header": "^1.8.8",
+    "gulp-load-plugins": "^1.3.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.3.2",
+    "node-sass": "^3.8.0",
+    "opener": "^1.4.2"
   }
 }
