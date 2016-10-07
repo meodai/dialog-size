@@ -1,8 +1,4 @@
-<p align="center">
-    <img width="80%" src="media/logo.png" alt="dialog(size)">
-</p>
-
-# dialog(size)
+<h1 align="center"><img width="80%" src="media/logo.png" alt="dialog(size)"></h1>
 
 A relative size-system that aims to ease the dialog between Design and Frontend by providing a system that is easily extendable and does not relay on names.
 
@@ -17,40 +13,42 @@ npm install dialog-sizes
 ## Basic usage
 
 1. Inlcude `dialog-size.scss`
-```scss
-@include dialog-sizes;
-```
+
+    ```scss
+    @include dialog-sizes;
+    ```
 
 2. Define a palette of possible sizes by setting the `$dialog-sizes`
-```scss
-$dialog-sizes:
-    (0.2rem tiny) // size(-1)
-    0.5rem
-    (0.75rem small)
-    0.8rem
-    (1rem medium isBase) // size(0)
-    1.2rem
-    (1.5rem large)
-    3.5rem
-    5rem
-    (10rem huge)
-    20rem;  // size(1)
-```
 
+    ```scss
+    $dialog-sizes:
+        (0.2rem tiny) // size(-1)
+        0.5rem
+        (0.75rem small)
+        0.8rem
+        (1rem medium isBase) // size(0)
+        1.2rem
+        (1.5rem large)
+        3.5rem
+        5rem
+        (10rem huge)
+        20rem;  // size(1)
+    ```
 3. Call `size()` function
-```scss
-body {
-    padding: size(-1); // => 0.2rem
-    font-size: size(0); // => 1rem
-}
-h1 {
-    font-size: size(1); // => 20rem
-    padding: size(large) 0; // => 1.5rem
-}
-p {
-    padding: size(3rem); // => 3.5rem
-}
-```
+
+    ```scss
+    body {
+        padding: size(-1); // => 0.2rem
+        font-size: size(0); // => 1rem
+    }
+    h1 {
+        font-size: size(1); // => 20rem
+        padding: size(large) 0; // => 1.5rem
+    }
+    p {
+        padding: size(3rem); // => 3.5rem
+    }
+    ```
 
 ## Usage
 
