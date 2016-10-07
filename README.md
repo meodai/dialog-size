@@ -1,21 +1,21 @@
 <h1 align="center"><img width="80%" src="media/logo.png" alt="dialog(size)"></h1>
 
-A relative size-system that aims to ease the dialog between Design and Frontend by providing a system that is easily extendable and does not relay on names.
+A relative size-system that aims to ease the dialog between design and frontend by providing a system that is easily extendable and does not rely on names.
 
 Play around with it in the [**demo**](http://sassmeister.com/gist/7e563730c9a2c15581e5c40a10098369)
 
 ## Installation
 
 ```
-npm install dialog-sizes
+npm install dialog-size
 ```
 
 ## Basic usage
 
-1. Inlcude `dialog-size.scss`
+1. Include `dialog-size.scss`
 
     ```scss
-    @include dialog-sizes;
+    @include dialog-size;
     ```
 
 2. Define a palette of possible sizes by setting the `$dialog-sizes`
