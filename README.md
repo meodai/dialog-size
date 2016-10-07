@@ -73,6 +73,11 @@ There is also the possibility to use a size in the same unit then your system. (
 
 - `size(9rem)` will retrun 10rem since its the closest in your system
 
+### Contributors
+
+- [Nirazul the Brain](//github.com/nirazul)
+- [Ingvi the magnificent](//github.com/ingvijonasson)
+
 ### License
 
 The MIT License (MIT)
