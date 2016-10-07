@@ -58,21 +58,21 @@ Once done your $dialog-sizes is set up, the `size()` function can be used in dif
 ### Relative system
 
 - `size(1)` will return the largest size in your system (20rem)
-- `size(-1)` will return the smalest size in your system (0.2rem)
+- `size(-1)` will return the smallest size in your system (0.2rem)
 - `size(0)` will return the base size (1rem)
 - `size(.2)` will snap to the closest value in your system
 
 ### Names
 
-You can also refere to absolute points in your size system by using names:
+You can also refer to absolute points in your size system by using names:
 
 - `size(large)` will return
 
 ### Value
 
-There is also the possibility to use a size in the same unit then your system. (In this case REM)
+There is also the possibility to use a size in the same unit than your system. (In this case REM)
 
-- `size(9rem)` will retrun 10rem since its the closest in your system
+- `size(9rem)` will return 10rem since it's the closest in your system
 
 ## Contributors 👯
 
