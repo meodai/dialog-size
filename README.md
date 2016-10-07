@@ -4,13 +4,13 @@ A relative size-system that aims to ease the dialog between design and frontend 
 
 Play around with it in the [**demo**](http://sassmeister.com/gist/7e563730c9a2c15581e5c40a10098369)
 
-## Installation
+## Installation 💾
 
 ```
 npm install dialog-size
 ```
 
-## Basic usage
+## Basic usage ☝️
 
 1. Include `dialog-size.scss`
 
@@ -50,7 +50,7 @@ npm install dialog-size
     }
     ```
 
-## Usage
+## Usage 📝
 
 Once done your $dialog-sizes is set up, the `size()` function can be used in different ways:
 
@@ -65,7 +65,7 @@ Once done your $dialog-sizes is set up, the `size()` function can be used in dif
 
 You can also refere to absolute points in your size system by using names:
 
-- `size(large)` will return`
+- `size(large)` will return
 
 ### Value
 
@@ -73,12 +73,12 @@ There is also the possibility to use a size in the same unit then your system. (
 
 - `size(9rem)` will retrun 10rem since its the closest in your system
 
-### Contributors
+## Contributors 👯
 
 - [Nirazul the Brain](//github.com/nirazul)
 - [Ingvi the magnificent](//github.com/ingvijonasson)
 
-### License
+## License 👮🏼
 
 The MIT License (MIT)
 
