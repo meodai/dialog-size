@@ -1,6 +1,6 @@
 {
   "name": "dialog-size",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Painless CSS metrics",
   "main": "size.scss",
   "scripts": {
