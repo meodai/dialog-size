@@ -17,7 +17,7 @@ npm install dialog-size
     ```scss
     @import 'dialog-size/dialog-size';
     ```
-    PS: make sure to **add `node_modules` to your [import paths](https://github.com/sass/node-sass#includepaths)**
+    PS: make sure to add `node_modules` to your [import paths](https://github.com/sass/node-sass#includepaths)
 
 2. Define a palette of possible sizes by setting the `$dialog-sizes`
 
@@ -35,17 +35,19 @@ npm install dialog-size
         (10rem huge)
         20rem;  // size(1)
     ```
-3. Call `size()` function
+3. Call the `size()` function
 
     ```scss
     body {
         padding: size(-1); // => 0.2rem
         font-size: size(0); // => 1rem
     }
+
     h1 {
         font-size: size(1); // => 20rem
-        padding: size(large) 0; // => 1.5rem
+        padding: size(large) 0; // => 1.5rem 0
     }
+
     p {
         padding: size(3rem); // => 3.5rem
     }
@@ -53,20 +55,20 @@ npm install dialog-size
 
 ## Usage 📝
 
-Once done your $dialog-sizes is set up, the `size()` function can be used in different ways:
+Once done your $dialog-sizes is set up, the `size()` function can be used in three different ways
 
 ### Relative system
 
+- `size(0)` will return the base size (1rem)
 - `size(1)` will return the largest size in your system (20rem)
 - `size(-1)` will return the smallest size in your system (0.2rem)
-- `size(0)` will return the base size (1rem)
 - `size(.2)` will snap to the closest value in your system
 
 ### Names
 
-You can also refer to absolute points in your size system by using names:
+You can also refer to absolute points in your size system by using names
 
-- `size(large)` will return
+- `size(large)` will return 1.5rem
 
 ### Value
 
