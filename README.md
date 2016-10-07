@@ -15,8 +15,9 @@ npm install dialog-size
 1. Import `dialog-size.scss`
 
     ```scss
-    @import dialog-size;
+    @import 'dialog-size/dialog-size';
     ```
+    PS: make sure to **add `node_modules` to your [import paths](https://github.com/sass/node-sass#includepaths)**
 
 2. Define a palette of possible sizes by setting the `$dialog-sizes`
 
@@ -82,7 +83,7 @@ There is also the possibility to use a size in the same unit then your system. (
 
 The MIT License (MIT)
 
-Copyright (c) 2014 David A.
+Copyright (c) 2017 David A.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
