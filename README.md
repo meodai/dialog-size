@@ -1,4 +1,4 @@
-<h1 align="center"><img width="80%" src="media/logo.png" alt="dialog(size)"></h1>
+![dialog(size)](media/logo.png)
 [![GitHub version](https://badge.fury.io/gh/meodai%2Fdialog-size.svg)](https://badge.fury.io/gh/meodai%2Fdialog-size)
 [![npm version](https://badge.fury.io/js/dialog-size.svg)](https://badge.fury.io/js/dialog-size)
 [![travis build](https://travis-ci.org/meodai/dialog-size.svg?branch=master)](https://travis-ci.org/meodai/dialog-size)
