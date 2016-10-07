@@ -1,9 +1,7 @@
 <h1 align="center"><img width="80%" src="media/logo.png" alt="dialog(size)"></h1>
-
-# dialog(size)
 [![GitHub version](https://badge.fury.io/gh/meodai%2Fdialog-size.svg)](https://badge.fury.io/gh/meodai%2Fdialog-size)
 [![npm version](https://badge.fury.io/js/dialog-size.svg)](https://badge.fury.io/js/dialog-size)
-[![npm version](https://travis-ci.org/meodai/dialog-size#)](https://travis-ci.org/meodai/dialog-size.svg?branch=master)
+[![travis build](https://travis-ci.org/meodai/dialog-size.svg?branch=master)](https://travis-ci.org/meodai/dialog-size.svg?branch=master)
 
 A relative size-system that aims to ease the dialog between design and frontend by providing a system that is easily extendable and does not rely on names.
 
