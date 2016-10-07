@@ -66,7 +66,7 @@ Once done your $dialog-sizes is set up, the `size()` function can be used in dif
 
 You can also refer to absolute points in your size system by using names:
 
-- `size(large)` will return
+- `size(large)` will return 1.5rem
 
 ### Value
 
