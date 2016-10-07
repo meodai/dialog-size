@@ -21,6 +21,10 @@ $dialog-sizes:
   @return $current;
 }
 
+/// Returns closest size within a map
+/// @param {String|Size or Number} $size - the size intended size
+/// @param {Map} $sizes - A map of possible sizes. (eg. $dialog-sizes)
+/// @return {Size} Closest size ins $sizes
 @function size($size, $sizes: $dialog-sizes) {
   $closest: null;
   $baseIndex: 1;
