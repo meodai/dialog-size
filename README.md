@@ -12,10 +12,10 @@ npm install dialog-size
 
 ## Basic usage ☝️
 
-1. Include `dialog-size.scss`
+1. Import `dialog-size.scss`
 
     ```scss
-    @include dialog-size;
+    @import dialog-size;
     ```
 
 2. Define a palette of possible sizes by setting the `$dialog-sizes`
