@@ -4,7 +4,7 @@
   "description": "Painless CSS sizes",
   "main": "dialog-size.scss",
   "scripts": {
-    "test": "gulp test:sass && opener ./test/sass/index.html",
+    "test": "gulp test:sass && opener ./test/test.css",
     "build": "gulp build",
     "dev": "gulp",
     "deploy": "gulp build && gh-pages -d demo"
