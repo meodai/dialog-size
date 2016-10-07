@@ -76,9 +76,9 @@ There is also the possibility to use a size in the same unit then your system. (
 
 ## Contributors 👯
 
-- [Nirazul the Brain](//github.com/nirazul)
-- [Ingvi the magnificent](//github.com/ingvijonasson)
+- [Nirazul the brain](//github.com/nirazul)
+- [Ingvi the magnificent viking](//github.com/ingvijonasson)
 
 ## License 👮🏼
 
-Created with ♥ by meodai. Licensed under the [MIT License](LICENSE).
+Created with ♥ by [meodai](//github.com/meodai). Licensed under the [MIT License](LICENSE).
