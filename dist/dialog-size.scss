@@ -1,0 +1,93 @@
+/**
+ * dialog-size - Painless CSS sizes
+ * @version v1.1.1
+ * (c) 2016 meodai <meodai@gmail.com> (https://github.com/meodai/)
+ * @link https://github.com/meodai/dialog-size#readme
+ * @license MIT
+ */
+ $dialog-sizes:
+  (0.2rem tiny)
+  0.5rem
+  (0.75rem small)
+  0.8rem
+  (1rem large isBase)
+  (1.2rem x-large)
+  (1.5rem xx-large)
+  3.5rem
+  (5rem huge)
+  10rem
+  !default;
+
+@function closest ($val, $list) {
+  $current: 0;
+  @each $listVal in $list {
+    @if ( abs($val - $listVal) < abs($val - $current) ) {
+      $current: $listVal;
+    }
+  }
+  @return $current;
+}
+
+/// Returns closest size within a map
+/// @param {String|Size or Number} $size - the size intended size
+/// @param {Map} $sizes - A map of possible sizes. (eg. $dialog-sizes)
+/// @return {Size} Closest size ins $sizes
+@function size($size, $sizes: $dialog-sizes) {
+  $closest: null;
+  $baseIndex: 1;
+  $sizesOnly: ();
+  $names: ();
+  $baseIndex: null;
+
+  @if length($sizes) < 3 {
+    @error '$sizes needs to be a set of min 3 values'
+  }
+  @for $index from 1 through length($sizes) {
+    $currentSize: nth($sizes, $index);
+    @each $val in $currentSize {
+      @if (type-of($val) == 'number') {
+        $sizesOnly: join($sizesOnly, $val);
+      } @else if $val == 'isBase' {
+        @if $baseIndex != null {
+          @error 'isBase can be in $sizes only once';
+        }
+        $baseIndex: $index;
+      } @else {
+        $names: map-merge($names, ($val: $index));
+      }
+    }
+  }
+
+  @if $baseIndex == null {
+    @error 'you need to set isBase on one of your values in $sizes';
+  }
+  @if not map-has-key($names, $size) and not (type-of($size) == 'number') {
+    @error '#{$size} is not set in $sizes';
+  }
+
+  @if map-has-key($names, $size) {
+    $closest: nth($sizesOnly, map-get($names, $size));
+  } @else if unitless($size) {
+    @if (not ($size <= 1) or not ($size >= -1) ) {
+        @error 'if $size is unitless it must be a value between -1 and 1';
+    } @else {
+      // transform range from [-1,1] to [0,1]
+      $min: $baseIndex;
+      $max: 1;
+
+      @if ($size >= 0) {
+        $max: length($sizesOnly);
+      }
+
+      $absuluteIndex: abs($size) * ($max - $min) + $min;
+      $closest: nth($sizesOnly, round($absuluteIndex));
+    }
+  }@else{
+    $closest: closest($size, $sizesOnly);
+    @if ( $closest != $size ) {
+      @warn '#{$size} is not contained in $sizes the closest value: #{$closest} will be used';
+    }
+  }
+
+  @return $closest;
+}
