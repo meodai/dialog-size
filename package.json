@@ -2,7 +2,7 @@
   "name": "dialog-size",
   "version": "1.1.1",
   "description": "Painless CSS sizes",
-  "main": "dialog-size.scss",
+  "main": "dist/dialog-size.scss",
   "scripts": {
     "test": "gulp test:sass",
     "build": "gulp build",
