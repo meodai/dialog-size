@@ -60,7 +60,7 @@ npm install dialog-size
 
 ## Usage 📝
 
-Once done your $dialog-sizes is set up, the `size()` function can be used in three different ways
+Once `$dialog-sizes` is set up, the `size()` function can be used in three different ways
 
 ### Relative system
 
