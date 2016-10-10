@@ -30,6 +30,23 @@ $dialog-sizes:
 /// @param {String|Size or Number} $size - the size intended size
 /// @param {Map} $sizes - A map of possible sizes. (eg. $dialog-sizes)
 /// @return {Size} Closest size ins $sizes
+///
+/// Usage:
+///
+/// # Relative
+/// size(-1) => 0.2rem
+/// size(0) => 1rem
+/// size(1) => 10rem
+///
+/// # Name
+/// size(large) => 1rem
+/// size(huge) => 5rem
+///
+/// # Value
+/// size(3.1rem) => 3.5rem
+///
+/// # Custom sizes $map
+/// size(0, $sizes: 0.2rem 0.5rem (1.2rem isBase) 2.5rem 3rem 10rem) => 1.2rem
 @function size($size, $sizes: $dialog-sizes) {
   $closest: null;
   $baseIndex: 1;
