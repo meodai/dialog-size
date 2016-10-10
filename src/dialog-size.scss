@@ -1,4 +1,5 @@
 /// default sizes
+/// if the argument $sizes of the size() mixin is empty. This map will be used.
 $dialog-sizes:
   (0.2rem tiny)
   0.5rem
@@ -11,6 +12,14 @@ $dialog-sizes:
   (5rem huge)
   10rem
   !default;
+
+/// strings for smaller and bigger keywords
+$dialog-keyowrd-bigger: 'bigger' !default;
+$dialog-keyowrd-smaller: 'smaller' !default;
+
+$dialog-keyowrd-bigger-than: '#{$dialog-keyowrd-bigger} than ' !default;
+$dialog-keyowrd-smaller-than: '#{$dialog-keyowrd-smaller} than ' !default;
+
 
 /// Gets closes value in a list
 /// @param {Number} $val - reference value
