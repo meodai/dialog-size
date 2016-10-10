@@ -14,12 +14,15 @@ $dialog-sizes:
   !default;
 
 /// strings for smaller and bigger keywords
-$dialog-keyowrd-bigger: 'bigger' !default;
-$dialog-keyowrd-smaller: 'smaller' !default;
+$dialog-keyowrd-bigger: bigger !default;
+$dialog-keyowrd-smaller: smaller !default;
 
-$dialog-keyowrd-bigger-than: '#{$dialog-keyowrd-bigger} than ' !default;
-$dialog-keyowrd-smaller-than: '#{$dialog-keyowrd-smaller} than ' !default;
+$dialog-keyowrd-bigger-than: unquote('#{$dialog-keyowrd-bigger} than ') !default;
+$dialog-keyowrd-smaller-than: unquote('#{$dialog-keyowrd-smaller} than ') !default;
 
+/// Globas for internal use
+$dialog-last-sizes: null;
+$dialog-last-size: null;
 
 /// Gets closes value in a list
 /// @param {Number} $val - reference value
@@ -33,6 +36,20 @@ $dialog-keyowrd-smaller-than: '#{$dialog-keyowrd-smaller} than ' !default;
     }
   }
   @return $current;
+}
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
 }
 
 /// Returns closest size within a map
@@ -63,9 +80,27 @@ $dialog-keyowrd-smaller-than: '#{$dialog-keyowrd-smaller} than ' !default;
   $names: ();
   $baseIndex: null;
 
+  $isSmaller: false;
+  $isBigger: false;
+  $isRelativeTo: false;
+  $isRelative: false;
+
+  @if type-of($size) == string {
+    $isSmaller: str-index($size, $dialog-keyowrd-smaller);
+    $isBigger: str-index($size, $dialog-keyowrd-bigger);
+    $isRelativeTo: str-index($size, $dialog-keyowrd-bigger-than) or str-index($size, $dialog-keyowrd-smaller-than);
+    $isRelative: ($isSmaller or $isBigger);
+  }
+
   @if length($sizes) < 3 {
     @error '$sizes needs to be a set of min 3 values'
   }
+
+  @if $isRelative and not $isRelativeTo and not $dialog-last-sizes {
+    @error 'the keywords "#{$dialog-keyowrd-bigger}" and "#{$dialog-keyowrd-smaller}" can only be used after a non relative size() call'
+  }
+
+  /// extract names and $baseIndex from $sizes
   @for $index from 1 through length($sizes) {
     $currentSize: nth($sizes, $index);
     @each $val in $currentSize {
@@ -85,6 +120,9 @@ $dialog-keyowrd-smaller-than: '#{$dialog-keyowrd-smaller} than ' !default;
   @if $baseIndex == null {
     @error 'you need to set isBase on one of your values in $sizes';
   }
+  @if $isRelativeTo {
+    $size: str-replace(str-replace($size, $dialog-keyowrd-smaller-than), $dialog-keyowrd-bigger-than);
+  }
   @if not map-has-key($names, $size) and not (type-of($size) == 'number') {
     @error '#{$size} is not set in $sizes';
   }
@@ -97,7 +135,7 @@ $dialog-keyowrd-smaller-than: '#{$dialog-keyowrd-smaller} than ' !default;
     @if (not ($size <= 1) or not ($size >= -1) ) {
         @error 'if $size is unitless it must be a value between -1 and 1';
     } @else {
-      // transform range from [-1,1] to [0,1]
+      /// transform range from [-1,1] to [0,1]
       $min: $baseIndex;
       $max: 1;
 
@@ -115,6 +153,18 @@ $dialog-keyowrd-smaller-than: '#{$dialog-keyowrd-smaller} than ' !default;
       @warn '#{$size} is not contained in $sizes the closest value: #{$closest} will be used';
     }
   }
+
+  $closestIndex: index($sizesOnly, $closest);
+
+  @if $isRelativeTo and $isBigger {
+    @return size(nth($sizesOnly, $closestIndex + 1), $sizes: $sizes);
+  } @else if $isRelativeTo and $isSmaller {
+    @return size(nth($sizesOnly, $closestIndex - 1), $sizes: $sizes);
+  }
+
+  /// saves the current output for future 'relative' keyword usage
+  $dialog-last-sizes: $sizes !global;
+  $dialog-last-size: $closest !global;
 
   @return $closest;
 }
