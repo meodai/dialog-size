@@ -26,6 +26,7 @@ div {
   padding: size(1);
   height: size(0);
   font-size: size(.2);
+  margin-bottom: size(bigger);
 }
 
 h1 {
@@ -33,4 +34,13 @@ h1 {
 }
 h2 {
   font-size: size('smaller than huge');
+}
+@each $tag in h3, h4, h5, h6 {
+  #{$tag} {
+    font-size: size(smaller);
+  }
+}
+.xx-tiny {
+  font-size: size(tiny);
+  margin-bottom: size('smaller than tiny'); /// should output a warning
 }

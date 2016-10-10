@@ -96,10 +96,6 @@ $dialog-last-size: null;
     @error '$sizes needs to be a set of min 3 values'
   }
 
-  @if $isRelative and not $isRelativeTo and not $dialog-last-sizes {
-    @error 'the keywords "#{$dialog-keyowrd-bigger}" and "#{$dialog-keyowrd-smaller}" can only be used after a non relative size() call'
-  }
-
   /// extract names and $baseIndex from $sizes
   @for $index from 1 through length($sizes) {
     $currentSize: nth($sizes, $index);
@@ -117,12 +113,19 @@ $dialog-last-size: null;
     }
   }
 
+  @if $isRelative and not $isRelativeTo and not $dialog-last-sizes {
+    @error 'the keywords "#{$dialog-keyowrd-bigger}" and "#{$dialog-keyowrd-smaller}" can only be used after a non relative size() call'
+  } @else if $isRelative and not $isRelativeTo {
+    $size: $dialog-last-size;
+  }
+
   @if $baseIndex == null {
     @error 'you need to set isBase on one of your values in $sizes';
   }
   @if $isRelativeTo {
     $size: str-replace(str-replace($size, $dialog-keyowrd-smaller-than), $dialog-keyowrd-bigger-than);
   }
+
   @if not map-has-key($names, $size) and not (type-of($size) == 'number') {
     @error '#{$size} is not set in $sizes';
   }
@@ -154,12 +157,26 @@ $dialog-last-size: null;
     }
   }
 
-  $closestIndex: index($sizesOnly, $closest);
+  @if $isRelative {
+    $closestIndex: index($sizesOnly, $closest);
+    $nextIndex: null;
+    $direction: null;
 
-  @if $isRelativeTo and $isBigger {
-    @return size(nth($sizesOnly, $closestIndex + 1), $sizes: $sizes);
-  } @else if $isRelativeTo and $isSmaller {
-    @return size(nth($sizesOnly, $closestIndex - 1), $sizes: $sizes);
+    @if not $isRelativeTo {
+      $sizes: $dialog-last-sizes;
+    }
+    @if $isBigger {
+      $nextIndex: $closestIndex + 1;
+      $direction: 'bigger';
+    } @else {
+      $nextIndex: $closestIndex - 1;
+      $direction: 'smaller';
+    }
+    @if ($nextIndex < 1) or ($nextIndex > length($sizes)) {
+      @warn 'there is nothing #{$direction} than #{$closest} in #{$sizes}';
+      $nextIndex: $closestIndex;
+    }
+    @return size(nth($sizesOnly, $nextIndex), $sizes: $sizes);
   }
 
   /// saves the current output for future 'relative' keyword usage
