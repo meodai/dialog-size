@@ -88,7 +88,7 @@ There is also the possibility to use a size in the same unit than your system. (
 
 It is possible to use a direct sibling size to the one that you have used previously:
 - Assuming that the last call was: `size(large)` (`=> 1.5rem`), `size(smaller)`
-  will return 1.2rem.
+  will return 1.2rem each consecutive call will go one step down until it reaches the smallest size.
 
 
 ## Contributors 👯
