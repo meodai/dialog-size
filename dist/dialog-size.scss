@@ -1,11 +1,12 @@
 /**
  * dialog-size - Painless CSS sizes
- * @version v1.1.3
+ * @version v1.2.0
  * (c) 2016 meodai <meodai@gmail.com> (https://github.com/meodai/)
  * @link https://github.com/meodai/dialog-size#readme
  * @license MIT
  */
  /// default sizes
+/// if the argument $sizes of the size() mixin is empty. This map will be used.
 $dialog-sizes:
   (0.2rem tiny)
   0.5rem
@@ -19,6 +20,17 @@ $dialog-sizes:
   10rem
   !default;
 
+/// strings for smaller and bigger keywords
+$dialog-keyowrd-bigger: bigger !default;
+$dialog-keyowrd-smaller: smaller !default;
+
+$dialog-keyowrd-bigger-than: unquote('#{$dialog-keyowrd-bigger} than ') !default;
+$dialog-keyowrd-smaller-than: unquote('#{$dialog-keyowrd-smaller} than ') !default;
+
+/// Globas for internal use
+$dialog-last-sizes: null;
+$dialog-last-size: null;
+
 /// Gets closes value in a list
 /// @param {Number} $val - reference value
 /// @param {List} $list - lookup list
@@ -31,6 +43,20 @@ $dialog-sizes:
     }
   }
   @return $current;
+}
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
 }
 
 /// Returns closest size within a map
@@ -61,9 +87,23 @@ $dialog-sizes:
   $names: ();
   $baseIndex: null;
 
+  $isSmaller: false;
+  $isBigger: false;
+  $isRelativeTo: false;
+  $isRelative: false;
+
+  @if type-of($size) == string {
+    $isSmaller: str-index($size, $dialog-keyowrd-smaller);
+    $isBigger: str-index($size, $dialog-keyowrd-bigger);
+    $isRelativeTo: str-index($size, $dialog-keyowrd-bigger-than) or str-index($size, $dialog-keyowrd-smaller-than);
+    $isRelative: ($isSmaller or $isBigger);
+  }
+
   @if length($sizes) < 3 {
     @error '$sizes needs to be a set of min 3 values'
   }
+
+  /// extract names and $baseIndex from $sizes
   @for $index from 1 through length($sizes) {
     $currentSize: nth($sizes, $index);
     @each $val in $currentSize {
@@ -80,9 +120,19 @@ $dialog-sizes:
     }
   }
 
+  @if $isRelative and not $isRelativeTo and not $dialog-last-sizes {
+    @error 'the keywords "#{$dialog-keyowrd-bigger}" and "#{$dialog-keyowrd-smaller}" can only be used after a non relative size() call'
+  } @else if $isRelative and not $isRelativeTo {
+    $size: $dialog-last-size;
+  }
+
   @if $baseIndex == null {
     @error 'you need to set isBase on one of your values in $sizes';
   }
+  @if $isRelativeTo {
+    $size: str-replace(str-replace($size, $dialog-keyowrd-smaller-than), $dialog-keyowrd-bigger-than);
+  }
+
   @if not map-has-key($names, $size) and not (type-of($size) == 'number') {
     @error '#{$size} is not set in $sizes';
   }
@@ -95,7 +145,7 @@ $dialog-sizes:
     @if (not ($size <= 1) or not ($size >= -1) ) {
         @error 'if $size is unitless it must be a value between -1 and 1';
     } @else {
-      // transform range from [-1,1] to [0,1]
+      /// transform range from [-1,1] to [0,1]
       $min: $baseIndex;
       $max: 1;
 
@@ -113,6 +163,32 @@ $dialog-sizes:
       @warn '#{$size} is not contained in $sizes the closest value: #{$closest} will be used';
     }
   }
+
+  @if $isRelative {
+    $closestIndex: index($sizesOnly, $closest);
+    $nextIndex: null;
+    $direction: null;
+
+    @if not $isRelativeTo {
+      $sizes: $dialog-last-sizes;
+    }
+    @if $isBigger {
+      $nextIndex: $closestIndex + 1;
+      $direction: 'bigger';
+    } @else {
+      $nextIndex: $closestIndex - 1;
+      $direction: 'smaller';
+    }
+    @if ($nextIndex < 1) or ($nextIndex > length($sizes)) {
+      @warn 'there is nothing #{$direction} than #{$closest} in #{$sizes}';
+      $nextIndex: $closestIndex;
+    }
+    @return size(nth($sizesOnly, $nextIndex), $sizes: $sizes);
+  }
+
+  /// saves the current output for future 'relative' keyword usage
+  $dialog-last-sizes: $sizes !global;
+  $dialog-last-size: $closest !global;
 
   @return $closest;
 }
