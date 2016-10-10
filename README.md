@@ -75,11 +75,21 @@ You can also refer to absolute points in your size system by using names
 
 - `size(large)` will return 1.5rem
 
+#### Relative to Name
+- `size(smaller then large)` will return 1.2rem.
+
 ### Value
 
 There is also the possibility to use a size in the same unit than your system. (In this case REM)
 
 - `size(9rem)` will return 10rem since it's the closest in your system
+
+### Relative to last used
+
+It is possible to use a direct sibling size to the one that you have used previously:
+- Assuming that the last call was: `size(large)` (`=> 1.5rem`), `size(smaller)`
+  will return 1.2rem.
+
 
 ## Contributors 👯
 
