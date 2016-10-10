@@ -1,3 +1,4 @@
+/// default sizes
 $dialog-sizes:
   (0.2rem tiny)
   0.5rem
@@ -11,6 +12,10 @@ $dialog-sizes:
   10rem
   !default;
 
+/// Gets closes value in a list
+/// @param {Number} $val - reference value
+/// @param {List} $list - lookup list
+/// @return {Number} Closest value in list
 @function closest ($val, $list) {
   $current: 0;
   @each $listVal in $list {
@@ -59,8 +64,10 @@ $dialog-sizes:
   }
 
   @if map-has-key($names, $size) {
+    /// $size is a name
     $closest: nth($sizesOnly, map-get($names, $size));
   } @else if unitless($size) {
+    /// $size is a relative value
     @if (not ($size <= 1) or not ($size >= -1) ) {
         @error 'if $size is unitless it must be a value between -1 and 1';
     } @else {
@@ -75,7 +82,8 @@ $dialog-sizes:
       $absuluteIndex: abs($size) * ($max - $min) + $min;
       $closest: nth($sizesOnly, round($absuluteIndex));
     }
-  }@else{
+  } @else {
+    /// if $size is a value
     $closest: closest($size, $sizesOnly);
     @if ( $closest != $size ) {
       @warn '#{$size} is not contained in $sizes the closest value: #{$closest} will be used';
