@@ -76,7 +76,7 @@ You can also refer to absolute points in your size system by using names
 - `size(large)` will return 1.5rem
 
 #### Relative to Name
-- `size("smaller then large")` will return 1.2rem.
+- `size("smaller than large")` will return 1.2rem.
 
 ### Value
 
