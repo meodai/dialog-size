@@ -11,8 +11,14 @@ Play around with it in the [**demo**](http://sassmeister.com/gist/7e563730c9a2c1
 
 ## Installation 💾
 
+npm:
 ```
 npm install dialog-size
+```
+
+yarn:
+```
+yarn dialog-size
 ```
 
 ## Basic usage ☝️
