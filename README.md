@@ -101,6 +101,7 @@ It is possible to use a direct sibling size to the one that you have used previo
 
 - [Nirazul the brain](//github.com/nirazul)
 - [Ingvi the magnificent viking](//github.com/ingvijonasson)
+- [Oriol Torrent](//github.com/orioltf)
 
 ## License 👮🏼
 
