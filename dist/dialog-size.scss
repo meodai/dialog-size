@@ -99,7 +99,7 @@ $dialog-last-size: null;
     $isBigger: str-index($size, $dialog-keyowrd-bigger);
     $isCurrent: str-index($size, $dialog-keyowrd-current);
     $isRelativeTo: str-index($size, $dialog-keyowrd-bigger-than) or str-index($size, $dialog-keyowrd-smaller-than);
-    $isRelative: ($isSmaller or $isBigger);
+    $isRelative: ($isSmaller or $isBigger or $isCurrent);
   }
 
   @if length($sizes) < 3 {
