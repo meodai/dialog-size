@@ -23,6 +23,7 @@ $dialog-sizes:
 /// strings for smaller and bigger keywords
 $dialog-keyowrd-bigger: bigger !default;
 $dialog-keyowrd-smaller: smaller !default;
+$dialog-keyowrd-current: current !default;
 
 $dialog-keyowrd-bigger-than: unquote('#{$dialog-keyowrd-bigger} than ') !default;
 $dialog-keyowrd-smaller-than: unquote('#{$dialog-keyowrd-smaller} than ') !default;
@@ -89,14 +90,16 @@ $dialog-last-size: null;
 
   $isSmaller: false;
   $isBigger: false;
+  $isCurrent: false;
   $isRelativeTo: false;
   $isRelative: false;
 
   @if type-of($size) == string {
     $isSmaller: str-index($size, $dialog-keyowrd-smaller);
     $isBigger: str-index($size, $dialog-keyowrd-bigger);
+    $isCurrent: str-index($size, $dialog-keyowrd-current);
     $isRelativeTo: str-index($size, $dialog-keyowrd-bigger-than) or str-index($size, $dialog-keyowrd-smaller-than);
-    $isRelative: ($isSmaller or $isBigger);
+    $isRelative: ($isSmaller or $isBigger or $isCurrent);
   }
 
   @if length($sizes) < 3 {
@@ -121,7 +124,7 @@ $dialog-last-size: null;
   }
 
   @if $isRelative and not $isRelativeTo and not $dialog-last-sizes {
-    @error 'the keywords "#{$dialog-keyowrd-bigger}" and "#{$dialog-keyowrd-smaller}" can only be used after a non relative size() call'
+    @error 'the keywords "#{$dialog-keyowrd-bigger}", "#{$dialog-keyowrd-smaller}" and "#{$dialog-keyowrd-current}" can only be used after a non relative size() call'
   } @else if $isRelative and not $isRelativeTo {
     $size: $dialog-last-size;
   }
@@ -175,6 +178,8 @@ $dialog-last-size: null;
     @if $isBigger {
       $nextIndex: $closestIndex + 1;
       $direction: 'bigger';
+    } @else if $isCurrent {
+      $nextIndex: $closestIndex;
     } @else {
       $nextIndex: $closestIndex - 1;
       $direction: 'smaller';
