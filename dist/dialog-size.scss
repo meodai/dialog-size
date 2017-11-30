@@ -1,6 +1,6 @@
 /**
  * dialog-size - Painless CSS sizes
- * @version v1.2.2
+ * @version v1.3.2
  * (c) 2017 meodai <meodai@gmail.com> (https://github.com/meodai/)
  * @link https://github.com/meodai/dialog-size#readme
  * @license MIT
@@ -108,7 +108,7 @@ $dialog-last-size: null;
 
   /// extract names and $baseIndex from $sizes
   @for $index from 1 through length($sizes) {
-    $currentSize: nth($sizes, $index);
+    $currentSize: nth($sizes, ($index *1)); // OrT: fixes https://github.com/sass/node-sass/issues/1904
     @each $val in $currentSize {
       @if (type-of($val) == 'number') {
         $sizesOnly: join($sizesOnly, $val);
@@ -116,9 +116,9 @@ $dialog-last-size: null;
         @if $baseIndex != null {
           @error 'isBase can be in $sizes only once';
         }
-        $baseIndex: $index;
+        $baseIndex: ($index *1); // OrT: fixes https://github.com/sass/node-sass/issues/1904
       } @else {
-        $names: map-merge($names, ($val: $index));
+        $names: map-merge($names, ($val: ($index *1))); // OrT: fixes https://github.com/sass/node-sass/issues/1904
       }
     }
   }
