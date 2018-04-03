@@ -85,15 +85,10 @@ if (mode === 'scss') {
     const hasChildren = val.hasOwnProperty('names') || val.hasOwnProperty('isBase');
     output += '<li style="display: flex; align-items: stretch; margin-bottom: 0.6rem" class="dialog-sizes__item">';
     let width = 100 / sizes.length;
-    sizesHTML += `<rect width="${width}%" x="${i * width}%" height="${val.value}" fill="${colors(i)}"></rect>`;
+    sizesHTML += `<div width="${width}%" x="${i * width}%" height="${val.value}" fill="${colors(i)}"></rect>`;
     output += `<svg style="border-left: 1px solid #000; transform: rotateY(180deg); flex: 0 0 ${sizes[sizes.length - 1].value}" width="${sizes[sizes.length - 1].value}" height="40" viewbox="0 0 40 ${sizes[sizes.length - 1].value}">
-      <style>
-       rect {
-        vector-effect: non-scaling-stroke;
-      }
-      </style>
-      <rect width="${val.value}" height="40" fill="${val.styleGuideColor || colors(i)}"></rect>
-    </svg>`;
+       <div style="width: ${val.value}; height: 40px; background-color: ${colors[i]};"></div>
+    </div>`;
 
     output += '<div style="padding-left: 0.5rem;"><strong style="display: block; font-size: 1.25rem;';
 
