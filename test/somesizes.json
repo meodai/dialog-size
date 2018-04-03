@@ -1,0 +1,82 @@
+[
+  {
+    "value": "0.11rem",
+    "names": [
+      "line"
+    ]
+  },
+  {
+    "value": "0.22rem",
+    "names": [
+      "tiny",
+      "header-stack"
+    ]
+  },
+  {
+    "value": "0.44rem",
+    "names": [
+      "base",
+      "small",
+      "grid"
+    ]
+  },
+  {
+    "value": "0.66rem",
+    "names": [
+      "list-stack",
+      "cell-bezel"
+    ]
+  },
+  {
+    "value": "0.88rem",
+    "names": [
+      "small",
+      "text-stack",
+      "button-stack",
+      "icon-inline",
+      "button-inline"
+    ],
+    "isBase": true
+  },
+  {
+    "value": "1.333rem",
+    "names": [
+      "medium",
+      "quote-stack--y",
+      "icon-size"
+    ]
+  },
+  {
+    "value": "1.77rem",
+    "names": [
+      "box-bezel"
+    ]
+  },
+  {
+    "value": "2.22rem",
+    "names": [
+      "large",
+      "table-bezel"
+    ]
+  },
+  {
+    "value": "2.66rem",
+    "names": [
+      "huge"
+    ]
+  },
+  {
+    "value": "3.55rem",
+    "names": [
+      "giant",
+      "section--bezel",
+      "block-bezel--y"
+    ]
+  },
+  {
+    "value": "4.44rem",
+    "names": [
+      "footer--stack"
+    ]
+  }
+]

@@ -4,7 +4,7 @@
   "description": "Painless CSS sizes",
   "main": "dist/dialog-size.scss",
   "scripts": {
-    "test": "gulp test:sass",
+    "test": "node cli.js --sizes test/somesizes.json > test/somesizes.scss && gulp test:sass",
     "build": "gulp build",
     "dev": "gulp",
     "deploy": "gulp build && gh-pages -d demo"
@@ -24,6 +24,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/meodai/dialog-size/issues"
+  },
+  "bin": {
+    "paletterTo": "./cli.js"
   },
   "homepage": "https://github.com/meodai/dialog-size#readme",
   "dependencies": {
