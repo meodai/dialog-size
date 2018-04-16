@@ -190,3 +190,46 @@ $dialog-last-size: null;
 
   @return $closest;
 }
+
+
+/// Transforms a imported map from a JSON to a list in the style of $dialog-sizes
+/// @param {map} $sizes - Map imported from NPM json-sass importer
+/// @return {list} - Updated string
+
+/// like: @import '../../design/sizes.json' =>
+// {
+//   "sizes": [
+//     {
+//       "value": "0.11rem",
+//       "names": ["line"]
+//     },
+//     {
+//       "value": "0.22rem",
+//       "names": ["tiny", "header-stack"]
+//     },
+//     {
+//       "value": "0.44rem",
+//       "names": ["base", "small", "grid"]
+//     }
+//   ]
+// }
+
+@function toDialogSizeList($sizes) {
+  /// creates an empty list
+  $ds: ();
+  @each $size in $sizes {
+      $val: map-get($size, 'value');
+      @if (map-has-key($size, 'names')) {
+          $names: map-get($size, 'names');
+          @if (type-of($names) != list) {
+              $names: ($names,);
+          }
+          $val: join($val, $names, space);
+      }
+      @if (map-has-key($size, 'isBase')) {
+          $val: join($val, (isBase,), space);
+      }
+      $ds: append($ds, $val, 'comma');
+  };
+  @return $ds;
+}
